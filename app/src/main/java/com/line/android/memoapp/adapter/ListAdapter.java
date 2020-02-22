@@ -1,6 +1,7 @@
 package com.line.android.memoapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.line.android.memoapp.R;
 import com.line.android.memoapp.model.MemoModel;
+import com.line.android.memoapp.view.DetailActivity;
 
 import java.util.ArrayList;
 
@@ -63,7 +65,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(mContext, position + "번째 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("content", item.getContent());
+                intent.putExtra("image", item.getImage());
+                mContext.startActivity(intent);
             }
         });
     }
