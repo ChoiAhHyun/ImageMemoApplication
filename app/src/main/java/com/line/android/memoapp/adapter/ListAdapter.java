@@ -52,8 +52,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         final MemoModel item = mList.get(position);
         holder.iv_image.setImageDrawable(null);
         if (item.getImage() != null)
-            Glide.with(mContext).load(item.getImage().get(1))
+            Glide.with(mContext).load(item.getImage().get(0))
                     .override(500, 500)
+                    .thumbnail(0.5f)
                     .error(R.color.colorPrimary)
                     .into(holder.iv_image);
         holder.tv_title.setText(item.getTitle());
@@ -70,12 +71,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mList.size();
-    }
-
-    @Override
-    public void onViewRecycled(@NonNull ViewHolder holder) {
-        super.onViewRecycled(holder);
-
     }
 
 }

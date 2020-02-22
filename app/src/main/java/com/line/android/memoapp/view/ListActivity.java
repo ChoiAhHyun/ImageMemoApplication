@@ -53,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void addImage() {
-        image.add("https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-512.png");
+        image.add("https://i.dlpng.com/static/png/1489152-parkpng-park-png-1276_717_preview.png");
         image.add("https://purepng.com/public/uploads/large/purepng.com-fresh-applefoodsweettastyhealthyfruitappleleaf-981524677946vfurf.png");
     }
 
