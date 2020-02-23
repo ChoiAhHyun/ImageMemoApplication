@@ -13,19 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.line.android.memoapp.R;
-import com.line.android.memoapp.model.MemoModel;
+import com.line.android.memoapp.model.Memo;
 import com.line.android.memoapp.view.DetailActivity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private Context mContext;
-    private ArrayList<MemoModel> mList;
+    private List<Memo> mList;
 
-    public ListAdapter(Context context, ArrayList<MemoModel> list) {
+    public ListAdapter(Context context) {
         this.mContext = context;
-        this.mList = list;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -51,7 +50,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final MemoModel item = mList.get(position);
+        final Memo item = mList.get(position);
         holder.iv_image.setImageDrawable(null);
         if (item.getImage() != null)
             Glide.with(mContext).load(item.getImage().get(0))
@@ -68,7 +67,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.putExtra("title", item.getTitle());
                 intent.putExtra("content", item.getContent());
-                intent.putExtra("image", item.getImage());
+//                intent.putExtra("image", item.getImage());
                 mContext.startActivity(intent);
             }
         });
@@ -79,4 +78,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return mList.size();
     }
 
+    public void setMemos(List<Memo> memos){
+        mList = memos;
+        notifyDataSetChanged();
+    }
 }

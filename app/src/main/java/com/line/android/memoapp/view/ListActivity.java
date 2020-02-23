@@ -1,6 +1,9 @@
 package com.line.android.memoapp.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -11,53 +14,41 @@ import android.view.MenuItem;
 
 import com.line.android.memoapp.R;
 import com.line.android.memoapp.adapter.ListAdapter;
-import com.line.android.memoapp.model.MemoModel;
+import com.line.android.memoapp.model.Memo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
-    ArrayList image = new ArrayList<>();
-    ArrayList<MemoModel> list = new ArrayList<>();
+    private ListAdapter adapter;
+    private MemoViewModel memoViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        addImage();
+        setRecyclerView();
+    }
 
+    private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.rv_list);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
-        ListAdapter adapter = new ListAdapter(this, list);
+        adapter = new ListAdapter(this);
         recyclerView.setAdapter(adapter);
-        list.clear();
-        addList();
+
+        getList();
     }
 
-    private void addList() {
-        for(int i = 0; i < 10; i++){
-            list.add(new MemoModel("가가가가가가가가가",
-                    "가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가",
-                    null));
-            list.add(new MemoModel("가나다라마바사아자차카타파하",
-                    "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하",
-                    image));
-            list.add(new MemoModel("나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나",
-                    "나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나",
-                    null));
-        }
-        list.add(new MemoModel("가가가가가가가가가",
-                "가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가",
-                null));
-        list.add(new MemoModel("나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나",
-                "나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나나",
-                null));
-    }
+    private void getList() {
+        memoViewModel = new ViewModelProvider(this).get(MemoViewModel.class);
 
-    private void addImage() {
-        image.add("https://i.dlpng.com/static/png/1489152-parkpng-park-png-1276_717_preview.png");
-        image.add("https://purepng.com/public/uploads/large/purepng.com-fresh-applefoodsweettastyhealthyfruitappleleaf-981524677946vfurf.png");
+        memoViewModel.getAll().observe(this, new Observer<List<Memo>>() {
+            @Override
+            public void onChanged(@Nullable final List<Memo> memos) {
+                adapter.setMemos(memos);
+            }
+        });
     }
 
     @Override
