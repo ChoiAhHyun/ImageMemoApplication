@@ -116,7 +116,7 @@ public class DetailActivity extends AppCompatActivity {
                 intent.putExtra("title", title);
                 intent.putExtra("content", content);
                 intent.putExtra("image", (ArrayList) image);
-                startActivityForResult(intent, 200);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

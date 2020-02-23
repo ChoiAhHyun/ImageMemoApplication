@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -45,10 +44,8 @@ public class EditActivity extends AppCompatActivity {
 
     private void setDetail() {
         Intent intent = getIntent();
-        Log.d("test", "intent: " + intent.toString());
         idx = intent.getIntExtra("idx", 0);
         if (idx != 0){
-            Log.d("test", "update");
             EDIT_MODE = true;
 
             String title = intent.getStringExtra("title");
@@ -59,7 +56,6 @@ public class EditActivity extends AppCompatActivity {
             et_content.setText(content);
 //            setImage(image);
         } else {
-            Log.d("test", "insert");
             EDIT_MODE = false;
         }
     }

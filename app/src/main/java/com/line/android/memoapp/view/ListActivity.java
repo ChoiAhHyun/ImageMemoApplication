@@ -63,7 +63,7 @@ public class ListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.add:
                 Intent intent = new Intent(this, EditActivity.class);
-                startActivityForResult(intent, 100);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
