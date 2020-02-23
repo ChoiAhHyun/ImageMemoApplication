@@ -65,9 +65,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra("title", item.getTitle());
-                intent.putExtra("content", item.getContent());
-//                intent.putExtra("image", item.getImage());
+                intent.putExtra("idx", item.getIdx());
                 mContext.startActivity(intent);
             }
         });
@@ -75,6 +73,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
+        if (mList == null)
+            return 0;
         return mList.size();
     }
 

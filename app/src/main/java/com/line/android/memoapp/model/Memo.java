@@ -14,13 +14,10 @@ public class Memo {
     @PrimaryKey(autoGenerate = true)
     public int idx;
 
-    @ColumnInfo
     public String title;
 
-    @ColumnInfo
     public String content;
 
-    @ColumnInfo
     @TypeConverters(DataConverter.class)
     public List<String> image;
 
@@ -28,20 +25,35 @@ public class Memo {
         return idx;
     }
 
+    public void setIdx(int idx) {
+        this.idx = idx;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
         return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public List<String> getImage() {
         return image;
     }
 
-    public Memo(int idx, String title, String content, List<String> image) {
-        this.idx = idx;
+    public void setImage(List<String> image) {
+        this.image = image;
+    }
+
+    public Memo(String title, String content, List<String> image) {
         this.title = title;
         this.content = content;
         this.image = image;
