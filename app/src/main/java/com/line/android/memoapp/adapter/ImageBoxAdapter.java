@@ -9,17 +9,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.line.android.memoapp.R;
+import com.yanzhenjie.album.Album;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
+public class ImageBoxAdapter extends RecyclerView.Adapter<ImageBoxAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<String> mList;
+    private List<String> mList = new ArrayList<>();
 
-    public ImageAdapter(Context context) {
+    public ImageBoxAdapter(Context context) {
         this.mContext = context;
     }
 
@@ -37,23 +38,30 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ImageAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_image, parent, false));
+        return new ImageBoxAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_image_box, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(mContext).load(mList.get(position))
-                .error(R.color.colorPrimary)
-                .into(holder.iv_image);
+        Album.getAlbumConfig()
+                .getAlbumLoader()
+                .load(holder.iv_image, mList.get(position));
     }
 
     @Override
     public int getItemCount() {
+        if (mList == null)
+            return 0;
         return mList.size();
     }
 
     public void setImages(List<String> images){
         mList = images;
+        notifyDataSetChanged();
+    }
+
+    public void addImage(String image){
+        mList.add(image);
         notifyDataSetChanged();
     }
 }

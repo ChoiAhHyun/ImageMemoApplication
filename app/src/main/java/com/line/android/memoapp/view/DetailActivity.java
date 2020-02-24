@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.line.android.memoapp.R;
-import com.line.android.memoapp.adapter.ImageAdapter;
+import com.line.android.memoapp.adapter.ImagePagerAdapter;
 import com.line.android.memoapp.database.AppDatabase;
 import com.line.android.memoapp.database.MemoDao;
 import com.line.android.memoapp.etc.CirclePagerIndicatorDecoration;
@@ -51,7 +51,7 @@ public class DetailActivity extends AppCompatActivity {
     private void initialize() {
         tv_title = findViewById(R.id.tv_title);
         tv_content = findViewById(R.id.tv_content);
-        recyclerView = findViewById(R.id.pager);
+        recyclerView = findViewById(R.id.rv_pager);
     }
 
     private void getDetail() {
@@ -85,7 +85,7 @@ public class DetailActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.GONE);
         } else {
             recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            ImageAdapter adapter = new ImageAdapter(this);
+            ImagePagerAdapter adapter = new ImagePagerAdapter(this);
             recyclerView.setAdapter(adapter);
             adapter.setImages(image);
 

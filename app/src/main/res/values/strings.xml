@@ -7,4 +7,7 @@
     <string name="list_add">작성</string>
     <string name="edit_upload">이미지 첨부</string>
     <string name="edit_save">저장</string>
+    <string name="upload_camera">카메라로 촬영</string>
+    <string name="upload_album">앨범에서 불러오기</string>
+    <string name="upload_url">외부 이미지 주소</string>
 </resources>

@@ -6,6 +6,17 @@
         android:icon="@drawable/baseline_photo_white_24"
         app:showAsAction="ifRoom"
         android:title="@string/edit_upload">
+        <menu>
+            <item
+                android:id="@+id/camera"
+                android:title="@string/upload_camera"/>
+            <item
+                android:id="@+id/album"
+                android:title="@string/upload_album"/>
+            <item
+                android:id="@+id/url"
+                android:title="@string/upload_url"/>
+        </menu>
     </item>
     <item
         android:id="@+id/save"

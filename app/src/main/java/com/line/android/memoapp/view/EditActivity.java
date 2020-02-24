@@ -1,5 +1,6 @@
 package com.line.android.memoapp.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,11 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.line.android.memoapp.R;
+import com.line.android.memoapp.adapter.ImageBoxAdapter;
 import com.line.android.memoapp.database.AppDatabase;
 import com.line.android.memoapp.database.MemoDao;
 import com.line.android.memoapp.model.Memo;
+import com.yanzhenjie.album.Action;
+import com.yanzhenjie.album.Album;
+import com.yanzhenjie.album.AlbumFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EditActivity extends AppCompatActivity {
@@ -23,6 +30,8 @@ public class EditActivity extends AppCompatActivity {
 
     private EditText et_title, et_content;
     private RecyclerView recyclerView;
+    private ImageBoxAdapter adapter;
+
     private int idx;
 
     @Override
@@ -33,13 +42,23 @@ public class EditActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initialize();
+        setRecyclerView();
         setDetail();
     }
 
     private void initialize() {
         et_title = findViewById(R.id.et_title);
         et_content = findViewById(R.id.et_content);
-//        recyclerView = findViewById(R.id.pager);
+        recyclerView = findViewById(R.id.rv_image);
+    }
+
+    private void setRecyclerView() {
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+
+        adapter = new ImageBoxAdapter(this);
+        recyclerView.setAdapter(adapter);
     }
 
     private void setDetail() {
@@ -54,26 +73,11 @@ public class EditActivity extends AppCompatActivity {
 
             et_title.setText(title);
             et_content.setText(content);
-//            setImage(image);
+            adapter.setImages(image);
         } else {
             EDIT_MODE = false;
         }
     }
-/*
-    private void setImage(Memo memo) {
-        if (memo.image == null){
-            recyclerView.setVisibility(View.GONE);
-        } else {
-            recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            ImageAdapter adapter = new ImageAdapter(this);
-            recyclerView.setAdapter(adapter);
-            adapter.setImages(memo.image);
-
-            PagerSnapHelper snapHelper = new PagerSnapHelper();
-            snapHelper.attachToRecyclerView(recyclerView);
-            recyclerView.addItemDecoration(new CirclePagerIndicatorDecoration());
-        }
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,22 +89,59 @@ public class EditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed(); //TODO override해서 dialog로 확인
+                onBackPressed();
                 return true;
-            case R.id.upload:
+            case R.id.camera:
+                takePhoto();
+                return true;
+            case R.id.album:
+                selectAlbum();
+                return true;
+            case R.id.url:
+
                 return true;
             case R.id.save:
-                Memo memo = new Memo(et_title.getText().toString(), et_content.getText().toString(), null);
-                if (EDIT_MODE) {
-                    memo.setIdx(idx);
-                    new UpdateAsyncTask(AppDatabase.getInstance(getApplicationContext()).memoDao()).execute(memo);
-                } else {
-                    new InsertAsyncTask(AppDatabase.getInstance(getApplicationContext()).memoDao()).execute(memo);
-                }
+                saveMemo();
                 finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void takePhoto() {
+        Album.camera(this)
+                .image()
+                .onResult(new Action<String>() {
+                    @Override
+                    public void onAction(@NonNull String result) {
+                        adapter.addImage(result);
+                    }
+                })
+                .start();
+    }
+
+    private void selectAlbum() {
+        Album.image(this)
+                .singleChoice()
+                .camera(false)
+                .columnCount(3)
+                .onResult(new Action<ArrayList<AlbumFile>>() {
+                    @Override
+                    public void onAction(@NonNull ArrayList<AlbumFile> result) {
+                        adapter.addImage(result.get(0).getPath());
+                    }
+                })
+                .start();
+    }
+
+    private void saveMemo() {
+        Memo memo = new Memo(et_title.getText().toString(), et_content.getText().toString(), null);
+        if (EDIT_MODE) {
+            memo.setIdx(idx);
+            new UpdateAsyncTask(AppDatabase.getInstance(this).memoDao()).execute(memo);
+        } else {
+            new InsertAsyncTask(AppDatabase.getInstance(this).memoDao()).execute(memo);
         }
     }
 
