@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -27,11 +28,13 @@ public class ImageBoxAdapter extends RecyclerView.Adapter<ImageBoxAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView iv_image;
+        Button btn_cancel;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             iv_image = itemView.findViewById(R.id.iv_image);
+            btn_cancel = itemView.findViewById(R.id.btn_cancel);
         }
     }
 
@@ -46,6 +49,14 @@ public class ImageBoxAdapter extends RecyclerView.Adapter<ImageBoxAdapter.ViewHo
         Album.getAlbumConfig()
                 .getAlbumLoader()
                 .load(holder.iv_image, mList.get(position));
+
+        holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

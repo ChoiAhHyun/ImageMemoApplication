@@ -91,7 +91,8 @@ public class DetailActivity extends AppCompatActivity {
             adapter.setImages(image);
 
             PagerSnapHelper snapHelper = new PagerSnapHelper();
-            snapHelper.attachToRecyclerView(recyclerView);
+            if (recyclerView.getOnFlingListener() == null)
+                snapHelper.attachToRecyclerView(recyclerView);
             recyclerView.addItemDecoration(new CirclePagerIndicatorDecoration());
         }
     }

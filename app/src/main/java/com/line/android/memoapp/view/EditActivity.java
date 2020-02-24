@@ -1,9 +1,11 @@
 package com.line.android.memoapp.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,7 +26,7 @@ import com.yanzhenjie.album.AlbumFile;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity{
 
     private boolean EDIT_MODE;
 
@@ -98,7 +100,7 @@ public class EditActivity extends AppCompatActivity {
                 selectAlbum();
                 return true;
             case R.id.url:
-
+                showUrlDialog();
                 return true;
             case R.id.save:
                 saveMemo();
@@ -133,6 +135,28 @@ public class EditActivity extends AppCompatActivity {
                     }
                 })
                 .start();
+    }
+
+    private void showUrlDialog() {
+        final EditText edittext = new EditText(this);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
+        builder.setTitle("외부 이미지 주소(URL)");
+        builder.setMessage("URL을 입력해주세요");
+        builder.setView(edittext);
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.addImage(edittext.getText().toString());
+                    }
+                });
+        builder.setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.show();
     }
 
     private void saveMemo() {
