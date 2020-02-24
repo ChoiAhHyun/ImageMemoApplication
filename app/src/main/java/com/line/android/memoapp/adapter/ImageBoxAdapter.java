@@ -64,4 +64,8 @@ public class ImageBoxAdapter extends RecyclerView.Adapter<ImageBoxAdapter.ViewHo
         mList.add(image);
         notifyDataSetChanged();
     }
+
+    public List<String> getImages(){
+        return mList;
+    }
 }

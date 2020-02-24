@@ -52,7 +52,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Memo item = mList.get(position);
         holder.iv_image.setImageDrawable(null);
-        if (item.getImage() != null)
+        if (item.getImage().size() > 0)
             Glide.with(mContext).load(item.getImage().get(0))
                     .override(500, 500)
                     .thumbnail(0.5f)

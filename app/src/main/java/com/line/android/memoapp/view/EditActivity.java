@@ -136,7 +136,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
     private void saveMemo() {
-        Memo memo = new Memo(et_title.getText().toString(), et_content.getText().toString(), null);
+        Memo memo = new Memo(et_title.getText().toString(), et_content.getText().toString(), adapter.getImages());
         if (EDIT_MODE) {
             memo.setIdx(idx);
             new UpdateAsyncTask(AppDatabase.getInstance(this).memoDao()).execute(memo);

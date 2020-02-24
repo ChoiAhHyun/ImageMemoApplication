@@ -10,22 +10,22 @@ import java.util.List;
 
 public class DataConverter {
     @TypeConverter
-    public static String fromStringList(List<String> list) {
-        if (list == null) {
-            return null;
-        }
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<String>>() {}.getType();
-        return gson.toJson(list, type);
-    }
-
-    @TypeConverter
-    public static List<String> toStringList(String value) {
-        if (value == null) {
+    public String fromStringList(List<String> string) {
+        if (string == null) {
             return (null);
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<List>() {}.getType();
-        return gson.fromJson(value, type);
+        Type type = new TypeToken<List<String>>() {}.getType();
+        return gson.toJson(string, type);
+    }
+
+    @TypeConverter
+    public List<String> toStringList(String stringString) {
+        if (stringString == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<String>>() {}.getType();
+        return gson.fromJson(stringString, type);
     }
 }

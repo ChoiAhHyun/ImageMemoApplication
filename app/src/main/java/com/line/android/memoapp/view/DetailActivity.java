@@ -64,7 +64,8 @@ public class DetailActivity extends AppCompatActivity {
             memo.observe(this, new Observer<Memo>() {
                 @Override
                 public void onChanged(@Nullable final Memo memo) {
-                    setDetail(memo);
+                    if (memo != null)
+                        setDetail(memo);
                 }
             });
         }
@@ -109,6 +110,7 @@ public class DetailActivity extends AppCompatActivity {
                 return true;
             case R.id.delete:
                 new DeleteAsyncTask(database.memoDao()).execute(idx);
+                finish();
                 return true;
             case R.id.edit:
                 Intent intent = new Intent(this, EditActivity.class);
