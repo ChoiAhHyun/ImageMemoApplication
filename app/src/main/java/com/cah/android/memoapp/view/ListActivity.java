@@ -1,4 +1,4 @@
-package com.line.android.memoapp.view;
+package com.cah.android.memoapp.view;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +12,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.line.android.memoapp.R;
-import com.line.android.memoapp.adapter.ListAdapter;
-import com.line.android.memoapp.database.AppDatabase;
-import com.line.android.memoapp.model.Memo;
+import com.cah.android.memoapp.R;
+import com.cah.android.memoapp.adapter.ListAdapter;
+import com.cah.android.memoapp.database.AppDatabase;
+import com.cah.android.memoapp.model.Memo;
 
 import java.util.List;
 

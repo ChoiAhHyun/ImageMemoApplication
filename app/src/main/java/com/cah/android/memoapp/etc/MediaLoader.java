@@ -1,9 +1,9 @@
-package com.line.android.memoapp.etc;
+package com.cah.android.memoapp.etc;
 
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.line.android.memoapp.R;
+import com.cah.android.memoapp.R;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.AlbumLoader;
 

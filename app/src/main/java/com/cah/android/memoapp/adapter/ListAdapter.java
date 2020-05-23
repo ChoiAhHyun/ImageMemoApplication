@@ -1,4 +1,4 @@
-package com.line.android.memoapp.adapter;
+package com.cah.android.memoapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.line.android.memoapp.R;
-import com.line.android.memoapp.model.Memo;
-import com.line.android.memoapp.view.DetailActivity;
+import com.cah.android.memoapp.R;
+import com.cah.android.memoapp.model.Memo;
+import com.cah.android.memoapp.view.DetailActivity;
 
 import java.util.List;
 

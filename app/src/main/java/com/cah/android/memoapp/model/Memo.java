@@ -1,11 +1,10 @@
-package com.line.android.memoapp.model;
+package com.cah.android.memoapp.model;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.line.android.memoapp.etc.DataConverter;
+import com.cah.android.memoapp.etc.DataConverter;
 
 import java.util.List;
 

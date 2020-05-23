@@ -1,4 +1,4 @@
-package com.line.android.memoapp;
+package com.cah.android.memoapp;
 
 import org.junit.Test;
 

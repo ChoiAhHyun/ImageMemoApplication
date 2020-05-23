@@ -1,4 +1,4 @@
-package com.line.android.memoapp.view;
+package com.cah.android.memoapp.view;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.line.android.memoapp.R;
-import com.line.android.memoapp.adapter.ImagePagerAdapter;
-import com.line.android.memoapp.database.AppDatabase;
-import com.line.android.memoapp.database.MemoDao;
-import com.line.android.memoapp.etc.CirclePagerIndicatorDecoration;
-import com.line.android.memoapp.model.Memo;
+import com.cah.android.memoapp.R;
+import com.cah.android.memoapp.adapter.ImagePagerAdapter;
+import com.cah.android.memoapp.database.AppDatabase;
+import com.cah.android.memoapp.database.MemoDao;
+import com.cah.android.memoapp.etc.CirclePagerIndicatorDecoration;
+import com.cah.android.memoapp.model.Memo;
 
 import java.util.ArrayList;
 import java.util.List;

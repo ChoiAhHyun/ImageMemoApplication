@@ -1,4 +1,4 @@
-package com.line.android.memoapp.database;
+package com.cah.android.memoapp.database;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.line.android.memoapp.model.Memo;
+import com.cah.android.memoapp.model.Memo;
 
 @Database(entities = {Memo.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

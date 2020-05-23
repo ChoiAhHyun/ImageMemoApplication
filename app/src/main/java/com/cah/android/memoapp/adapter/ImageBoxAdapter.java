@@ -1,43 +1,47 @@
-package com.line.android.memoapp.adapter;
+package com.cah.android.memoapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.line.android.memoapp.R;
+import com.cah.android.memoapp.R;
 import com.yanzhenjie.album.Album;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.ViewHolder> {
+public class ImageBoxAdapter extends RecyclerView.Adapter<ImageBoxAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<String> mList;
+    private List<String> mList = new ArrayList<>();
 
-    public ImagePagerAdapter(Context context) {
+    public ImageBoxAdapter(Context context) {
         this.mContext = context;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView iv_image;
+        Button btn_cancel;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             iv_image = itemView.findViewById(R.id.iv_image);
+            btn_cancel = itemView.findViewById(R.id.btn_cancel);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ImagePagerAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_image_pager, parent, false));
+        return new ImageBoxAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_image_box, parent, false));
     }
 
     @Override
@@ -45,6 +49,14 @@ public class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.Vi
         Album.getAlbumConfig()
                 .getAlbumLoader()
                 .load(holder.iv_image, mList.get(position));
+
+        holder.btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -57,5 +69,14 @@ public class ImagePagerAdapter extends RecyclerView.Adapter<ImagePagerAdapter.Vi
     public void setImages(List<String> images){
         mList = images;
         notifyDataSetChanged();
+    }
+
+    public void addImage(String image){
+        mList.add(image);
+        notifyDataSetChanged();
+    }
+
+    public List<String> getImages(){
+        return mList;
     }
 }

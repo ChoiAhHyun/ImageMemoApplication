@@ -1,4 +1,4 @@
-package com.line.android.memoapp.database;
+package com.cah.android.memoapp.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.line.android.memoapp.model.Memo;
+import com.cah.android.memoapp.model.Memo;
 
 import java.util.List;
 

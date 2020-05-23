@@ -1,8 +1,8 @@
-package com.line.android.memoapp.base;
+package com.cah.android.memoapp.base;
 
 import android.app.Application;
 
-import com.line.android.memoapp.etc.MediaLoader;
+import com.cah.android.memoapp.etc.MediaLoader;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumConfig;
 

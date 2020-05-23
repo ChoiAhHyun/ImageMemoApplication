@@ -1,4 +1,4 @@
-package com.line.android.memoapp.view;
+package com.cah.android.memoapp.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -14,11 +14,11 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
-import com.line.android.memoapp.R;
-import com.line.android.memoapp.adapter.ImageBoxAdapter;
-import com.line.android.memoapp.database.AppDatabase;
-import com.line.android.memoapp.database.MemoDao;
-import com.line.android.memoapp.model.Memo;
+import com.cah.android.memoapp.R;
+import com.cah.android.memoapp.adapter.ImageBoxAdapter;
+import com.cah.android.memoapp.database.AppDatabase;
+import com.cah.android.memoapp.database.MemoDao;
+import com.cah.android.memoapp.model.Memo;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;

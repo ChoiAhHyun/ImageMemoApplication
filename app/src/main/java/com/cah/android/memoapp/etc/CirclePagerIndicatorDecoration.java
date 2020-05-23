@@ -1,4 +1,4 @@
-package com.line.android.memoapp.etc;
+package com.cah.android.memoapp.etc;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
