@@ -1,10 +1,7 @@
 # ImageMemoApplication
 카메라나 앨범 혹은 URL로 다수의 이미지 첨부가 가능한 메모장 앱
-<img src="image/list.jpg" width="20%">
-<img src="image/edit1.jpg" width="20%">
-<img src="image/edit2.jpg" width="20%">
-<img src="image/edit4.jpg" width="20%">
-<img src="image/detail2.jpg" width="20%">
+
+<img src="image/list.jpg" width="20%"><img src="image/edit1.jpg" width="20%"><img src="image/edit2.jpg" width="20%"><img src="image/edit4.jpg" width="20%"><img src="image/detail2.jpg" width="20%">
 
 ## Library
 - Room
